@@ -146,7 +146,7 @@ function showResult() {
     document.getElementById('gauge-fill').style.width = gaugeWidth;
     document.getElementById('gauge-fill').style.background = gaugeColor;
     
-    // 제휴 마케팅 링크 세팅 (수정 시 여기를 바꾸세요)
-    const affiliateUrl = "https://example.com/adult-gel-offer"; 
+    // 제휴 마케팅 링크 세팅
+    const affiliateUrl = "https://checkit082.com"; 
     document.getElementById('affiliate-link').href = affiliateUrl;
 }
