@@ -147,6 +147,6 @@ function showResult() {
     document.getElementById('gauge-fill').style.background = gaugeColor;
     
     // 남성용(조루) 마취 크림/젤 제휴 링크 (임시로 기본 사이트로 설정)
-    const affiliateUrl = "https://checkit082.com"; 
+    const affiliateUrl = "https://checkit082.com/product/%EC%A1%B0%EB%A3%A8-%EA%B0%9C%EC%84%A0-%EC%82%AC%EC%A0%95-%EC%A7%80%EC%97%B0-%EB%A7%88%EC%82%AC%EC%A7%80%EA%B8%B0-%EA%BC%AC%EB%B6%80%EA%B8%B0%EB%91%90/12/category/57/display/1/"; 
     document.getElementById('affiliate-link').href = affiliateUrl;
 }
