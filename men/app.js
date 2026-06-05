@@ -55,6 +55,9 @@ function switchScreen(screenId) {
 }
 
 function startTest() {
+    if (typeof fbq !== 'undefined') {
+        fbq('trackCustom', 'GT_TestStart');
+    }
     currentQ = 0;
     totalScore = 0;
     switchScreen('quiz-screen');
@@ -108,8 +111,18 @@ function showLoading() {
     }, 3800);
 }
 
+let isResultTracked = false;
+
 function showResult() {
     switchScreen('result-screen');
+    
+    if (!isResultTracked) {
+        if (typeof fbq !== 'undefined') {
+            fbq('trackCustom', 'GT_ResultView');
+            fbq('track', 'Lead');
+        }
+        isResultTracked = true;
+    }
     
     let title = "";
     let level = "";
@@ -148,5 +161,18 @@ function showResult() {
     
     // 남성용(조루) 마취 크림/젤 제휴 링크 (임시로 기본 사이트로 설정)
     const affiliateUrl = "https://checkit082.com/product/%EC%A1%B0%EB%A3%A8-%EA%B0%9C%EC%84%A0-%EC%82%AC%EC%A0%95-%EC%A7%80%EC%97%B0-%EB%A7%88%EC%82%AC%EC%A7%80%EA%B8%B0-%EA%BC%AC%EB%B6%80%EA%B8%B0%EB%91%90/12/category/57/display/1/"; 
-    document.getElementById('affiliate-link').href = affiliateUrl;
+    const linkBtn = document.getElementById('affiliate-link');
+    const linkImg = document.getElementById('affiliate-link-img');
+    
+    if (linkBtn) linkBtn.href = affiliateUrl;
+    if (linkImg) linkImg.href = affiliateUrl;
+
+    const trackDetailClick = () => {
+        if (typeof fbq !== 'undefined') {
+            fbq('trackCustom', 'GT_DetailClick');
+        }
+    };
+
+    if (linkBtn) linkBtn.onclick = trackDetailClick;
+    if (linkImg) linkImg.onclick = trackDetailClick;
 }
