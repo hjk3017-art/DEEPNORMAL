@@ -56,6 +56,7 @@ function switchScreen(screenId) {
 
 function startTest() {
     if (typeof fbq !== 'undefined') {
+        console.log('GT_TestStart');
         fbq('trackCustom', 'GT_TestStart');
     }
     currentQ = 0;
@@ -118,7 +119,9 @@ function showResult() {
     
     if (!isResultTracked) {
         if (typeof fbq !== 'undefined') {
+            console.log('GT_ResultView');
             fbq('trackCustom', 'GT_ResultView');
+            console.log('Lead');
             fbq('track', 'Lead');
         }
         isResultTracked = true;
@@ -167,10 +170,18 @@ function showResult() {
     if (linkBtn) linkBtn.href = affiliateUrl;
     if (linkImg) linkImg.href = affiliateUrl;
 
-    const trackDetailClick = () => {
+    const trackDetailClick = (e) => {
+        e.preventDefault();
+        const targetUrl = e.currentTarget.href;
+        
         if (typeof fbq !== 'undefined') {
+            console.log('GT_DetailClick');
             fbq('trackCustom', 'GT_DetailClick');
         }
+        
+        setTimeout(() => {
+            window.location.href = targetUrl;
+        }, 200);
     };
 
     if (linkBtn) linkBtn.onclick = trackDetailClick;
